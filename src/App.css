@@ -13,26 +13,40 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.nav-bar{
+  border-bottom: 2px solid #ccc;
 }
 
-.App-link {
-  color: #61dafb;
+.side-bar{
+  border-right: 2px solid #ccc;
+  height: 100vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.notification-bar{
+  width: 64vw;
+  padding: 6px 0;
+}
+
+.full-screen-icon-container{
+  background-color: blue;
+}
+
+
+.mapStyles{
+  background: #ccc;
+  height: 100vh;
+  width: 100vw;
+}
+
+@media only screen and (max-width: 767px) {
+  .mapStyles {
+    background: lightblue;
+    height: 40vh;
   }
-  to {
-    transform: rotate(360deg);
+
+  .notification-bar{
+    width: 100%;
+    padding-right: 10px;
   }
+  
 }
