@@ -7,18 +7,93 @@
   pointer-events: none;
 }
 
+.auto-complete-wrapper-div i{
+  position: absolute;
+  top: 12px;
+}
+
+.auto-complete-wrapper-div div input{
+  padding-left: 30px !important;
+}
+
+.auto-complete-input{
+  display: relative;
+}
+
+.confirmation-section-wrapper{
+  position: relative;
+}
+
+.confirmation-section-wrapper .main-header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.confirmation-section-wrapper{
+  overflow-y: scroll !important;
+  max-height: 47rem;
+  padding-bottom: 5rem;
+}
+
+.confirmation-collection {
+  border: none !important;
+}
+
+.confirmation-collection h2{
+  font-size: 12px !important;
+}
+
+.confirmation-collection li{
+  border: 1px solid #e0e0e0 !important;
+  border-bottom: none !important;
+}
+
+.confirmation-collection li:last-child{
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.confirmation-collection li:nth-child(1){
+  border-style: none !important;
+}
+
+.autocomplete-dropdown-container{
+  display: absolute !important;
+  background: tomato !important;
+  top:0;
+  bottom:22px;
+}
+
+.timepicker-modal, .datepicker-modal{
+  max-height: 347px !important;
+  overflow: hidden !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.nav-bar{
+  background-color: #fff;
+  -webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.change-focus i:focus{
+  background-color: blue;
+  color: red;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.nav-bar{
-  border-bottom: 2px solid #ccc;
-}
+
 
 .side-bar{
-  border-right: 2px solid #ccc;
+  border-right: 1px solid #ccc;
   height: 100vh;
 }
 

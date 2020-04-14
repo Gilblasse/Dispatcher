@@ -6,11 +6,7 @@ export default function Navigation() {
     return (
         <nav>
             <Navbar className="nav-bar">
-                <button className="hamburger hamburger--collapse " type="button">
-                    <span className="hamburger-box">
-                        <span className="hamburger-inner"></span>
-                    </span>
-                </button>
+                <i class="large material-icons left text-muted">menu</i>
                 <Navbar.Brand href="#home">Brand link</Navbar.Brand>
             </Navbar>
             
