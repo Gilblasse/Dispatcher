@@ -37,7 +37,7 @@ function FormConfirmation(props) {
         <div className="confirmation-section-wrapper">
             <Collection className="main-header" style={{margin: 0}}>
                 <CollectionItem>
-                <Link to="/" className="mr-5 text-muted"><i class="fas fa-times"></i></Link>
+                <Link to="/" className="mr-5 text-muted"><i className="fas fa-times"></i></Link>
                 <Navbar.Brand className="ml-5"> Confirmation </Navbar.Brand>
                 </CollectionItem>
             </Collection>

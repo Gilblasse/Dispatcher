@@ -18,7 +18,7 @@ function FormTripDetails(props) {
         <>
             <Collection style={{margin: 0}}>
                 <CollectionItem>
-                <Link to="/" className="mr-5 text-muted"><i class="fas fa-times"></i></Link>
+                <Link to="/" className="mr-5 text-muted"><i className="fas fa-times"></i></Link>
                 <Navbar.Brand className="ml-5"> Trip Details</Navbar.Brand>
                 </CollectionItem>
             </Collection>

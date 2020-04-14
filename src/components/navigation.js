@@ -6,7 +6,7 @@ export default function Navigation() {
     return (
         <nav>
             <Navbar className="nav-bar">
-                <i class="large material-icons left text-muted">menu</i>
+                <i className="large material-icons left text-muted">menu</i>
                 <Navbar.Brand href="#home">Brand link</Navbar.Brand>
             </Navbar>
             
