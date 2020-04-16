@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import {fetchTrips} from '../actions/tripActions'
+import { connect } from 'react-redux'
 
 class TripsContainer extends Component {
+
+  componentDidMount(){
+    this.props.fetchTrips()
+  }
+
+
   render() {
     return (
       <div> 
-
-        Trips
+        {this.props.loading ? "Loading..." : "Trips"}
         <br/> 
         <input type="text"/>
         <button >
@@ -18,4 +25,13 @@ class TripsContainer extends Component {
   }
 }
 
-export default TripsContainer;
+
+const mapDispatchToProps = dispatch => {
+  return{
+    fetchTrips: ()=> dispatch(fetchTrips())
+  }
+}
+
+const mapStateToProps = ({tripReducer: {loading}}) => ({loading})
+
+export default connect(mapStateToProps,mapDispatchToProps)(TripsContainer);

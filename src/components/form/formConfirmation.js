@@ -4,9 +4,8 @@ import {Button, Navbar, Container } from 'react-bootstrap';
 import { Collection, CollectionItem, Row, Col } from 'react-materialize';
 
 
-function FormConfirmation(props) {
+function FormConfirmation({ passenger, trip, prevStep, bookTrip, isLoading}) {
     
-    const { passenger, trip, prevStep, bookTrip} = props
 
     const passengerData = [
         ['Name',passenger.name],
@@ -32,6 +31,7 @@ function FormConfirmation(props) {
     const dataToDisplay = data => {
         return data.map(info => displayInfo(info[0],info[1],info[0]))
     }
+    
 
     return (
         <div className="confirmation-section-wrapper">
@@ -60,7 +60,7 @@ function FormConfirmation(props) {
 
             <Container className="mt-5">
                 <Button onClick={prevStep} variant="primary" className="mr-3"> Previous </Button>
-                <Button onClick={bookTrip} variant="primary"> Submit </Button>
+                <Button onClick={bookTrip} variant="primary"> {isLoading ? "Loading..." : "Submit"} </Button>
             </Container>
         </div>
     )

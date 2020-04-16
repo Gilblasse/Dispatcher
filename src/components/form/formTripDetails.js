@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {Form , Col, Row,Button, Navbar, Container } from 'react-bootstrap';
 import { Collection, CollectionItem, DatePicker, TimePicker} from 'react-materialize';
 import moment from 'moment'
-import LocationSearchInput from './locationSearchInput';
+import LocationSearchInput from '../locationSearchInput';
 
 
 

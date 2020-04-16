@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import FormPassengerDetails from './formPassengerDetails';
-import FormTripDetails from './formTripDetails';
-import FormConfirmation from './formConfirmation';
+import FormPassengerDetails from './form/formPassengerDetails';
+import FormTripDetails from './form/formTripDetails';
+import FormConfirmation from './form/formConfirmation';
 import { connect } from 'react-redux'
+import { fetchPassengers } from '../actions/passengerActions'
+import { bookTrip } from '../actions/tripActions'
 
 class TripFormContainer extends Component {
   constructor(props){
@@ -34,9 +36,13 @@ class TripFormContainer extends Component {
     }
   }
 
-  handleSubmit = () => {
-    console.log('Submiting')
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.loading === true) this.props.history.push(`/trips`)
+  }
+
+  handleSubmit = () => {
+    this.props.bookTrip(this.state) 
   }
 
   nextStep = ()=>{
@@ -126,6 +132,7 @@ class TripFormContainer extends Component {
           {...this.state}
           prevStep={this.prevStep}
           bookTrip={this.handleSubmit}
+          isLoading={this.props.loading}
           />
         )
 
@@ -137,4 +144,14 @@ class TripFormContainer extends Component {
 
 }
 
-export default connect()(TripFormContainer);
+
+const mapDispatchToProps = dispatch => {
+  return {
+    bookTrip: trip => dispatch(bookTrip(trip)),
+    fetchPassengers: () => dispatch(fetchPassengers)
+  }
+}
+
+const mapStateToProps = ({ tripReducer: { loading } }) => ({loading})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TripFormContainer);
