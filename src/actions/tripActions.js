@@ -1,6 +1,10 @@
+// import {fetchPassengers} from './passengerActions';
+
 const ADD_TRIP = "ADD_TRIP"
+const FIND_TRIP = "FIND_TRIP"
 const ADD_TRIPS = "ADD_TRIPS"
 const LOADING_TRIPS = "LOADING_TRIPS"
+const FILTER_TRIP_BY_DATE = "FILTER_TRIP_BY_DATE"
 const BASE_URL = "http://localhost:3001/api/v1/trips"
 
 
@@ -25,6 +29,13 @@ const loadingTrip = () => {
     };
 };
 
+const findTrip = (tripId) => {
+  return {
+    type: FIND_TRIP,
+    tripId
+  };
+}
+
 
 
 
@@ -32,7 +43,7 @@ const loadingTrip = () => {
 //              TRIP FETCH REQUEST
 // ==============================================
 
-const bookTrip = ({passenger, trip}) => {
+const bookTrip = ({passenger, trip}, date) => {
 
     const configObj = {
         method: 'POST',
@@ -40,34 +51,52 @@ const bookTrip = ({passenger, trip}) => {
             "Content-Type": "application/json",
             Accept: "application/json"
         },
-        body: JSON.stringify({passenger,trip})
+        body: JSON.stringify({passenger,trip,date})
     }
 
     return (dispatch) => {
         dispatch(loadingTrip())
         
       fetch(BASE_URL,configObj)
-        .then((resp) => resp.json())
-        .then((trip) => dispatch(addTrip(trip)) )
         .catch(error => console.log("ERROR: ", error))
     };
 }
 
 
 
-const fetchTrips = () => {
-
-    return (dispatch) => {
-        dispatch(loadingTrip())
-        
-      fetch(BASE_URL)
-        .then((resp) => resp.json())
-        .then((trips) => dispatch(addTrips(trips)) )
-        .catch(error => console.log("ERROR: ", error))
-    };
-
+const fetchTrips = date => {
+  return (dispatch) => {
+      dispatch(loadingTrip())
+    
+    fetch(`${BASE_URL}?date=${date}`)
+      .then((resp) => resp.json())
+      .then((trips) => dispatch(addTrips(trips)) )
+      .catch(error => console.log("ERROR: ", error))
+  };
 }
 
+
+const fetchTrip = tripId => {
+  return (dispatch) => {
+      dispatch(loadingTrip())
+    
+    fetch(`${BASE_URL}/${tripId}`)
+      .then((resp) => resp.json())
+      .then((trip) => dispatch(addTrips(trip)) )
+      .catch(error => console.log("ERROR: ", error))
+  };
+}
+
+
+
+const deleteFromDB = tripId => {
+  return (dispatch) => {
+    dispatch(loadingTrip())
+  
+  fetch(`${BASE_URL}/${tripId}`, {method: "DELETE"})
+    .catch(error => console.log("ERROR: ", error))
+};
+}
 
 
 
@@ -78,7 +107,12 @@ export {
     addTrips,
     bookTrip,
     fetchTrips,
+    fetchTrip,
+    findTrip,
+    deleteFromDB,
     ADD_TRIP,
     ADD_TRIPS,
-    LOADING_TRIPS
+    FIND_TRIP,
+    LOADING_TRIPS,
+    FILTER_TRIP_BY_DATE
 }

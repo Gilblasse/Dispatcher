@@ -1,37 +1,45 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import {fetchTrips} from '../actions/tripActions'
+import {fetchPassengers} from '../actions/passengerActions'
 import { connect } from 'react-redux'
-
+import TripsList from '../components/tripsList';
+import { setDate } from '../actions/dateActions'
+import { CircularProgress } from '@material-ui/core';
+import SearchAndAddIcon from '../components/searchAndAddIcon';
 class TripsContainer extends Component {
 
   componentDidMount(){
-    this.props.fetchTrips()
+    this.props.fetchTrips(this.props.date)
+    this.props.fetchPassengers()
   }
 
+  isLoading = ()=> {
+    return this.props.tripLoading && this.props.passengerLoading ? true : false
+  }
 
   render() {
     return (
-      <div> 
-        {this.props.loading ? "Loading..." : "Trips"}
+      <div className="trips-container">
+          <div className="trip-top-border"></div>
+          {this.isLoading() 
+            ? <CircularProgress size="5rem" thickness={4.5} className="loading-icon"/> 
+            : <TripsList trips={this.props.trips} passengers={this.props.passengers}/> 
+          }       
         <br/> 
-        <input type="text"/>
-        <button >
-          <Link to="/trips/new">+</Link>
-        </button>
-        
+
+        <SearchAndAddIcon/>        
       </div>
     );
   }
 }
 
 
-const mapDispatchToProps = dispatch => {
-  return{
-    fetchTrips: ()=> dispatch(fetchTrips())
-  }
-}
+const mapStateToProps = ({dateReducer: date, tripReducer: {loading, trips}, passengerReducer: {loading: isLoad, passengers} }) => ({
+  tripLoading: loading, 
+  trips,
+  passengerLoading: isLoad,
+  passengers,
+  date
+})
 
-const mapStateToProps = ({tripReducer: {loading}}) => ({loading})
-
-export default connect(mapStateToProps,mapDispatchToProps)(TripsContainer);
+export default connect(mapStateToProps,{fetchTrips, fetchPassengers, setDate})(TripsContainer);

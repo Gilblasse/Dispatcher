@@ -1,5 +1,5 @@
 import React from "react";
-// import logo from "./logo.svg";
+import "../node_modules/@fortawesome/fontawesome-pro/css/all.css";
 import "./App.css";
 import { Route, Switch } from "react-router";
 

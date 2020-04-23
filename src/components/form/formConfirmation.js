@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {Button, Navbar, Container } from 'react-bootstrap';
+import {Button, Container } from 'react-bootstrap';
 import { Collection, CollectionItem, Row, Col } from 'react-materialize';
+import TripContainerHeader from '../tripContainerHeader';
 
 
 function FormConfirmation({ passenger, trip, prevStep, bookTrip, isLoading}) {
@@ -35,12 +35,7 @@ function FormConfirmation({ passenger, trip, prevStep, bookTrip, isLoading}) {
 
     return (
         <div className="confirmation-section-wrapper">
-            <Collection className="main-header" style={{margin: 0}}>
-                <CollectionItem>
-                <Link to="/" className="mr-5 text-muted"><i className="fas fa-times"></i></Link>
-                <Navbar.Brand className="ml-5"> Confirmation </Navbar.Brand>
-                </CollectionItem>
-            </Collection>
+            <TripContainerHeader title="Confirmation" />
             
             <Row>
                 <Col m={6} s={12}>

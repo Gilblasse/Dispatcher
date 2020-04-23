@@ -5,7 +5,7 @@ import FormConfirmation from './form/formConfirmation';
 import { connect } from 'react-redux'
 import { fetchPassengers } from '../actions/passengerActions'
 import { bookTrip } from '../actions/tripActions'
-
+  
 class TripFormContainer extends Component {
   constructor(props){
     super(props)
@@ -36,13 +36,10 @@ class TripFormContainer extends Component {
     }
   }
 
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.loading === true) this.props.history.push(`/trips`)
-  }
-
   handleSubmit = () => {
-    this.props.bookTrip(this.state) 
+    const date = this.props.date
+    this.props.bookTrip(this.state, date) 
+    this.props.history.push(`/trips`)
   }
 
   nextStep = ()=>{
@@ -147,11 +144,11 @@ class TripFormContainer extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    bookTrip: trip => dispatch(bookTrip(trip)),
+    bookTrip: (trip,date) => dispatch(bookTrip(trip,date)),
     fetchPassengers: () => dispatch(fetchPassengers)
   }
 }
 
-const mapStateToProps = ({ tripReducer: { loading } }) => ({loading})
+const mapStateToProps = ({ dateReducer: date ,tripReducer: { loading } }) => ({loading,date})
 
 export default connect(mapStateToProps, mapDispatchToProps)(TripFormContainer);

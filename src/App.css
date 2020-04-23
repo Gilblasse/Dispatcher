@@ -1,3 +1,163 @@
+:root {
+  --mobility_icon_outer: 1.5rem;
+}
+
+.menu-btn{
+  cursor: pointer;
+}
+
+.menu-link{
+  text-decoration: none !important;
+}
+
+.menu-link div{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.menu-drawer .MuiDrawer-paperAnchorLeft{
+  padding-top: 2rem;
+  width: 17rem;
+}
+
+.menu-drawer .MuiDrawer-paperAnchorLeft ul div .MuiListItemText-root .MuiListItemText-primary{
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.menu-drawer .MuiDrawer-paperAnchorLeft ul div:hover .MuiListItemText-root  .MuiListItemText-primary{
+  color: rgb(63, 81, 181) !important;
+}
+
+.menu-drawer .MuiDrawer-paperAnchorLeft ul div:hover .menu-icon svg{
+  fill: rgb(63, 81, 181) !important;
+}
+
+.weather-container{
+  margin: 0; 
+}
+
+.weather-container li img{
+  width: 30px;
+  margin-left: 2rem;
+}
+
+.weather-container li span{
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 500;
+}
+
+
+.MuiTypography-body2{
+  font-size: 0.915rem !important;
+}
+
+.trip-icon{
+  background-color: transparent !important;
+  color: #bdbdbd !important;
+}
+
+.trip-top-border {
+  position: fixed;
+  top: 15rem;
+  z-index: 1000;
+  background-color: brown;
+}
+
+.trips-container{
+  position: relative;
+  overflow-y: scroll !important;
+  height: 100vh;
+}
+
+.trips-container::-webkit-scrollbar-button {display:none}
+
+.trips-container::-webkit-scrollbar {
+  /* background-color:#fff; */
+  width:16px;
+  height: 200px;
+}
+
+.trips-container::-webkit-scrollbar-track {
+  margin-top: 1rem;
+  /* background-color:#fff; */
+}
+
+.trips-container::-webkit-scrollbar-thumb {
+  background-color:#babac0;
+  border-radius:16px;
+  border:5px solid #fff
+}
+
+.loading-icon{
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.mobility-icon{
+  margin: 0 !important;
+}
+
+.mobility-outer-circle{
+  background-color: white;
+  font-size: var(--mobility_icon_outer);
+  position: relative;
+}
+
+.mobility-outer-circle i{
+  font-size: calc(var(--mobility_icon_outer) - .5rem);
+  position: absolute;
+  top: 3.2px;
+  left: 3.5px;
+}
+.collapsible-header{
+  display: block !important;
+  border-bottom: none !important;
+  background-color: #fff;
+}
+
+.collapsible-header .MuiCardHeader-root{
+  padding: 0 !important;
+}
+
+.passenger-trip-card .collapsible-body{
+  padding: 0 !important;
+}
+
+.collapsible{
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navigation-date-picker {
+  max-width: 150px !important;
+}
+
+
+.no-trip-title{
+  position: absolute;
+  top: 20px;
+  left: 20%;
+}
+
+
+
+.navigation-date-picker .MuiInput-underline:before {
+  border-bottom: none !important;
+}
+
+.navigation-date-picker div input{
+  margin: 0 !important;
+  border-bottom: none !important;
+}
+
+
+.vertical-btn:focus{
+  background-color: transparent;
+}
+
 .App {
   text-align: center;
 }
@@ -5,6 +165,20 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.trip-card{
+  box-shadow: none !important;
+}
+
+.trip-filter input, .trip-filter input:focus, .trip-filter input:active{
+  border-bottom: none !important;
+}
+
+.filter-and-addTrip-btns{
+  position: absolute;
+  right: 0;
+  bottom: 10rem;
 }
 
 .auto-complete-wrapper-div i{

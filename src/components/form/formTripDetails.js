@@ -1,9 +1,9 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import {Form , Col, Row,Button, Navbar, Container } from 'react-bootstrap';
-import { Collection, CollectionItem, DatePicker, TimePicker} from 'react-materialize';
+import {Form , Col, Row,Button, Container } from 'react-bootstrap';
+import { DatePicker, TimePicker} from 'react-materialize';
 import moment from 'moment'
 import LocationSearchInput from '../locationSearchInput';
+import TripContainerHeader from '../tripContainerHeader';
 
 
 
@@ -16,12 +16,7 @@ function FormTripDetails(props) {
 
     return (
         <>
-            <Collection style={{margin: 0}}>
-                <CollectionItem>
-                <Link to="/" className="mr-5 text-muted"><i className="fas fa-times"></i></Link>
-                <Navbar.Brand className="ml-5"> Trip Details</Navbar.Brand>
-                </CollectionItem>
-            </Collection>
+            <TripContainerHeader title="Trip Details" />
 
             <Form className="mt-5">
                 <Form.Group as={Row}>

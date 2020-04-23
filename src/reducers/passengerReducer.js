@@ -1,4 +1,4 @@
-import { ADD_PASSENGER, ADD_PASSENGERS } from '../actions/passengerActions'
+import { ADD_PASSENGER, ADD_PASSENGERS, LOADING_PASSENGERS } from '../actions/passengerActions'
 // import { v4 as uuidv4 } from 'uuid';
 
 const initialState = {
@@ -14,10 +14,11 @@ function passengerReducer(state = initialState, action) {
             return {...state, passengers: action.passengers}
 
         case ADD_PASSENGER:
-            const newState = {...state, passengers: [...state.passengers, action.passenger], loading: false}
-            console.log(newState)
             return {...state, passengers: [...state.passengers, action.passenger], loading: false}
-    
+        
+        case LOADING_PASSENGERS:
+            return {...state, loading: true}
+
         default:
             return state;
     }

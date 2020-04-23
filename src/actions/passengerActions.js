@@ -1,6 +1,7 @@
 
 const ADD_PASSENGER = "ADD_PASSENGER"
 const ADD_PASSENGERS = "ADD_PASSENGERS"
+const LOADING_PASSENGERS = "LOADING_PASSENGERS"
 const BASE_URL = "http://localhost:3001/api/v1/passengers"
 
 
@@ -18,6 +19,12 @@ const addPassengers = passengers => {
     };
 }
 
+
+const loadingPassengers = () => {
+    return {
+        type: LOADING_PASSENGERS,
+    };
+}
 
 
 
@@ -44,6 +51,7 @@ function createPassenger(passenger) {
 
 function fetchPassengers() {
     return (dispatch) => {
+        dispatch(loadingPassengers())
       fetch(BASE_URL)
         .then((resp) => resp.json())
         .then((passengers) => dispatch(addPassengers(passengers)) )
@@ -59,6 +67,8 @@ export {
     addPassenger,
     fetchPassengers,
     createPassenger,
+    loadingPassengers,
     ADD_PASSENGER,
-    ADD_PASSENGERS
+    ADD_PASSENGERS,
+    LOADING_PASSENGERS
 }

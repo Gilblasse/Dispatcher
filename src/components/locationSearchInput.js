@@ -20,7 +20,9 @@ function LocationSearchInput (props) {
         return getLatLng(results[0])
       })
       
-      .then(latLng => handleChange(formatted_address,type,latLng))
+      .then(latLng => {
+        handleChange(formatted_address,type,latLng) 
+      })
       .catch(error => console.error('Error', error));
   };
 

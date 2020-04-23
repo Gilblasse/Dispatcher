@@ -13,10 +13,11 @@ import 'materialize-css/dist/js/materialize.min.js'
 // Import Materialize
 // import M from "materialize-css";
 import 'materialize-css/dist/css/materialize.min.css'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+// pick a date util library
+import DateFnsUtils from '@date-io/date-fns';
 
-
-
-const RootApplication = <Provider store={store}><Router><App /></Router></Provider>
+const RootApplication = <MuiPickersUtilsProvider utils={DateFnsUtils}><Provider store={store}><Router><App /></Router></Provider></MuiPickersUtilsProvider>
 ReactDOM.render(RootApplication,document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
