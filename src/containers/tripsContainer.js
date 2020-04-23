@@ -14,7 +14,7 @@ class TripsContainer extends Component {
   }
 
   isLoading = ()=> {
-    return this.props.tripLoading && this.props.passengerLoading ? true : false
+    return this.props.tripLoading ? true : false
   }
 
   render() {
@@ -23,7 +23,7 @@ class TripsContainer extends Component {
           <div className="trip-top-border"></div>
           {this.isLoading() 
             ? <CircularProgress size="5rem" thickness={4.5} className="loading-icon"/> 
-            : <TripsList trips={this.props.trips} passengers={this.props.passengers}/> 
+            : <TripsList trips={this.props.trips} /> 
           }       
         <br/> 
 
@@ -34,11 +34,10 @@ class TripsContainer extends Component {
 }
 
 
-const mapStateToProps = ({dateReducer: date, tripReducer: {loading, trips}, passengerReducer: {loading: isLoad, passengers} }) => ({
+const mapStateToProps = ({dateReducer: date, tripReducer: {loading, trips}, passengerReducer: {loading: isLoad} }) => ({
   tripLoading: loading, 
   trips,
   passengerLoading: isLoad,
-  passengers,
   date
 })
 

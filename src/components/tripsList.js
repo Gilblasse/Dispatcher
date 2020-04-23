@@ -5,12 +5,8 @@ import TripBody from './tripBody';
 import NoTripsAvailable from './noTripsAvailable';
 
 
-function TripsList({trips, passengers}) {
+function TripsList({trips}) {
     
-    const findPassenger = (id) =>{
-        return passengers.find(p => p.id === id)
-    }
-
     const handleClick = e =>{
         if(isDescendant("BUTTON",e.target)){
             const liTag = getLiTag(e.target)
@@ -51,7 +47,6 @@ function TripsList({trips, passengers}) {
 
     return (
         <div>
-            
             {
                 trips.length === 0
                 ? <NoTripsAvailable/>
@@ -59,7 +54,7 @@ function TripsList({trips, passengers}) {
                     <div onClick={handleClick}>
                         <Collapsible accordion>
                             { trips.map((trip,i) => {
-                                const passenger = findPassenger(trip.passenger_id)
+                                const passenger = trip.passenger
 
                                 return(
                                     

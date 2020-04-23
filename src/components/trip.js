@@ -17,10 +17,10 @@ import GpsFixedIcon from '@material-ui/icons/GpsFixed';
 import RoomIcon from '@material-ui/icons/Room';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import moment from 'moment'
 
 
-
-function Trip({ trips, fetchTrip, findTrip, deleteFromDB }) {
+function Trip({ trips, fetchTrip, findTrip, deleteFromDB, globalDate }) {
 
     const history = useHistory()
     const params = useParams()
@@ -32,15 +32,21 @@ function Trip({ trips, fetchTrip, findTrip, deleteFromDB }) {
 
 
     const handleClick = ()=> {
-        deleteFromDB(trip.id)
-        history.push("/trips")
+        if(checkDate()){
+            deleteFromDB(trip.id)
+            history.push("/trips")
+        }
     }
 
+    const checkDate = () => {
+        const today = moment(new Date()).format('MMMM DD YYYY')
+        return moment(globalDate).isSameOrAfter(today)
+    }
     
     const header = (
         <span>
             { trip && trip.passenger.name }
-            <IconButton className="vertical-btn" onClick={handleClick}> <DeleteOutlineIcon color="secondary"/> </IconButton>
+            <IconButton className="vertical-btn" onClick={handleClick}> <DeleteOutlineIcon color={checkDate() ? "secondary" : "disabled" }/> </IconButton>
         </span>
     )
 
@@ -53,8 +59,11 @@ function Trip({ trips, fetchTrip, findTrip, deleteFromDB }) {
         { icon: <RoomIcon />, text: !!trip && trip.endLocation.location}
     ]
     
+
+debugger
     return (
         <div>
+            
             {
                 !trip 
                 ? <CircularProgress size="5rem" thickness={4.5} className="loading-icon"/> 
@@ -95,8 +104,8 @@ function Trip({ trips, fetchTrip, findTrip, deleteFromDB }) {
 
 const mapStateToProps = state =>{
     return {
-        trips: state.tripReducer.trips
+        trips: state.tripReducer.trips,
+        globalDate: state.dateReducer
     }
 }
-
 export default connect(mapStateToProps,{ fetchTrip, findTrip, deleteFromDB})(Trip)

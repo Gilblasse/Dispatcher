@@ -16,6 +16,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 // pick a date util library
 import DateFnsUtils from '@date-io/date-fns';
+// import '../node_modules/@semantic-ui-react/event-stack/src/l'
 
 const RootApplication = <MuiPickersUtilsProvider utils={DateFnsUtils}><Provider store={store}><Router><App /></Router></Provider></MuiPickersUtilsProvider>
 ReactDOM.render(RootApplication,document.getElementById("root"));

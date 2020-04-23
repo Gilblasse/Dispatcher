@@ -28,6 +28,7 @@ function TripHeader({trip, passenger}) {
 
     return (
         <span className="d-flex justify-content-between">
+            
             <Card className="trip-card">
                 <CardHeader
                 avatar={<Avatar aria-label="recipe" >{mobility((passenger && passenger.mobility))}</Avatar>}

@@ -62,7 +62,6 @@ export class FormPassengerDetails extends Component {
                                 }}
                                 value={mobility}
                                 >
-                                <option disabled value="" >Choose Passenger Mobility</option>
                                 <option value="Taxi">Taxi</option>
                                 <option value="Ambulatory">Ambulatory</option>
                                 <option value="Wheelchair">Wheelchair</option>
