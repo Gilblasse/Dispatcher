@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import {fetchPassengers} from './passengerActions';
 
 const ADD_TRIP = "ADD_TRIP"
@@ -116,3 +117,6 @@ export {
     LOADING_TRIPS,
     FILTER_TRIP_BY_DATE
 }
+=======
+console.log('This is a test')
+>>>>>>> d79d077fd8b1f8cbddb43cedf9026870054761ae
