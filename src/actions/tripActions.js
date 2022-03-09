@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // import {fetchPassengers} from './passengerActions';
 
 const ADD_TRIP = "ADD_TRIP"
@@ -57,7 +56,7 @@ const bookTrip = ({passenger, trip}, date) => {
 
     return (dispatch) => {
         dispatch(loadingTrip())
-        
+
       fetch(BASE_URL,configObj)
         .catch(error => console.log("ERROR: ", error))
     };
@@ -68,7 +67,7 @@ const bookTrip = ({passenger, trip}, date) => {
 const fetchTrips = date => {
   return (dispatch) => {
       dispatch(loadingTrip())
-    
+
     fetch(`${BASE_URL}?date=${date}`)
       .then((resp) => resp.json())
       .then((trips) => dispatch(addTrips(trips)) )
@@ -80,7 +79,7 @@ const fetchTrips = date => {
 const fetchTrip = tripId => {
   return (dispatch) => {
       dispatch(loadingTrip())
-    
+
     fetch(`${BASE_URL}/${tripId}`)
       .then((resp) => resp.json())
       .then((trip) => dispatch(addTrips(trip)) )
@@ -93,7 +92,7 @@ const fetchTrip = tripId => {
 const deleteFromDB = tripId => {
   return (dispatch) => {
     dispatch(loadingTrip())
-  
+
   fetch(`${BASE_URL}/${tripId}`, {method: "DELETE"})
     .catch(error => console.log("ERROR: ", error))
 };
@@ -117,6 +116,3 @@ export {
     LOADING_TRIPS,
     FILTER_TRIP_BY_DATE
 }
-=======
-console.log('This is a test')
->>>>>>> d79d077fd8b1f8cbddb43cedf9026870054761ae
