@@ -5,7 +5,7 @@ const FIND_TRIP = "FIND_TRIP"
 const ADD_TRIPS = "ADD_TRIPS"
 const LOADING_TRIPS = "LOADING_TRIPS"
 const FILTER_TRIP_BY_DATE = "FILTER_TRIP_BY_DATE"
-const BASE_URL = "http://localhost:3001/api/v1/trips"
+const BASE_URL = "https://us-central1-agmtlambdaapi.cloudfunctions.net/trips"
 
 
 
