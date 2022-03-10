@@ -1,40 +1,31 @@
-const { log } = require('firebase-functions/lib/logger');
-const TripsDb = require("../config");
+const Trip = require('../models/Trip');
 
 
 const getTrips = async (req, res) => {
-    const snapshot = await TripsDb.get()
-    const trips = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))
+    const trips = await Trip.all()
     res.send({msg: 'ALL Trips', data: trips});
 };
 
 const getTrip = async (req, res) => {
     const id = req.params.id
-    let trip = {}
-    // const snapshot = await TripsDb.doc(id).get()
-    const query = await TripsDb.where('Passenger', '==', 'Boby').get()
-    if (!query.empty) {
-        const snapshot = query.docs[0];
-        trip = snapshot.data();
-    }
-
+    const trip = await Trip.findbyId(id)
     res.send({msg: 'Trip', data: trip});
 };
 
 const createTrip = async (req, res) => {
-    const data = req.body
-    const tripRef = await TripsDb.add(data)
-    res.send({msg: 'Trip Created', id: tripRef.id});
+    const trip = await Trip.findOrCreate(req.body)
+    res.send({msg: 'Trip Created', trip});
 };
 
+
 const updateTrip = async (req, res) => {
-    res.end('When a PUT request is made, then this '
-            + 'is the response sent to the client!');
+    await Trip.update(req.body)
+    res.send({msg: 'Trip deleted'})
 };
 
 const deleteTrip = async (req, res) => {
-    res.end('When a DELETE request is made, then this '
-            + 'is the response sent to the client!');
+    await Trip.delete(req.body.id)
+    res.send({msg: 'Trip deleted'})
 };
 
 module.exports = {createTrip, getTrips, getTrip, updateTrip, deleteTrip};

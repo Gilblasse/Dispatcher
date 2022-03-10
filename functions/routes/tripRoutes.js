@@ -15,5 +15,4 @@ TripRouter.route('/:id')
 .put(TripController.updateTrip)
 .delete(TripController.deleteTrip);
 
-
 module.exports = TripRouter
