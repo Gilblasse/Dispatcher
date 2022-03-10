@@ -8,8 +8,12 @@ TripRouter.use(cors);
 
 TripRouter.route('/')
 .get(TripController.getTrips)
-.post(TripController.create)
+.post(TripController.createTrip)
+
+TripRouter.route('/:id')
+.get(TripController.getTrip)
 .put(TripController.updateTrip)
 .delete(TripController.deleteTrip);
+
 
 module.exports = TripRouter
