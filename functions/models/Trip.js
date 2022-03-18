@@ -1,7 +1,11 @@
+const { log } = require("firebase-functions/logger");
 const { isEmpty } = require("lodash");
-const TripsDb = require("../config");
-const tripAttr = require("../constants/tripConstants");
+const { TripsDb } = require("../config");
+const {tripAttr} = require("../constants/tripConstants");
 const { camelize, camelizeKeys } = require("../helpers");
+const { findOrCreateDriver } = require("./Driver");
+const { findOrCreatePassenger } = require("./Passenger");
+
 class Trip {
   static attr = tripAttr.map(camelize);
   constructor(tripObj) {
@@ -18,9 +22,10 @@ class Trip {
     return trips
   }
 
-  static async update(data){
-    const {id, ...tripObj} = data
+  static async update({id, ...tripObj}){
     await TripsDb.doc(id).update(tripObj)
+    const trip = await Trip.findbyId(id)
+    return trip
   }
 
   static async delete(id){
@@ -34,36 +39,46 @@ class Trip {
   }
 
   static async findbyId(id){
+    if(!id) return null
     const snapshot = await TripsDb.doc(id).get()
     const trip = snapshot.data()
-    return {id, trip}
+
+    log({FindingByID: {id, ...trip}})
+    return {id, ...trip}
   }
 
-  static async queryTrip(tripObj){
+  static async queryRow(tripObj){
+    const { date=null, rowStart=null } = camelizeKeys(tripObj)
+    const indexVal = `${date}_${rowStart}`
+
+    if(!rowStart) return null
     let trip = {}
-    const {date=null, startTime=null, passengerID=null, driver=null} = camelizeKeys(tripObj)
+    const myQuery = await TripsDb.where("index",'==', indexVal).get()
 
-    const query = await TripsDb
-      .where('date', '==', date)
-      .where('startTime', '==', startTime)
-      .where('passengerID', passengerID)
-      .where('driverID', '==', driver)
-      .get()
-
-    if (!query.empty) {
-      const snapshot = query.docs[0];
-      trip = snapshot.data();
+    if (!myQuery.empty) {
+      const doc = myQuery.docs[0]
+      trip = {id: doc.id, ...doc.data()}
     }
 
     return trip
   }
 
   static async findOrCreate(tripObj){
-    const { id=null } = tripObj
-    let trip = await id ? Trip.findbyId(id) : Trip.queryTrip(tripObj)
+    const { id=null, passenger:passName, driver:drivName, ...data} = camelizeKeys(tripObj)
 
-    if(isEmpty(trip)){
-      trip = await Trip.create(tripObj)
+    let trip = await Trip.findbyId(id) || await Trip.queryRow(tripObj)
+    const passenger = await findOrCreatePassenger({name: passName || 'imNull'})
+    const driver = await findOrCreateDriver({name: drivName || 'imNull'})
+
+    if(!trip || isEmpty(trip)){
+      trip = await Trip.create({
+        ...data,
+        passengerID: passenger.id,
+        driverID: driver.id,
+        index: `${data.date}_${data.rowStart}`
+      })
+    }else{
+      trip = await Trip.update({...trip, passengerID: passenger.id ,driverID: driver.id })
     }
 
     return trip
