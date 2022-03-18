@@ -13,6 +13,7 @@ const getTrip = async (req, res) => {
 };
 
 const createTrip = async (req, res) => {
+    // const trip = await Trip.findOrCreate(req.body)
     const trip = await Trip.findOrCreate(req.body)
     res.send({msg: 'Trip Created', trip});
 };

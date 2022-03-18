@@ -16,5 +16,12 @@ const tripAttr = [
     'Chat'
 ]
 
+const passengerAttr = [
+    'Name',
+]
 
-module.exports = tripAttr
+const driverAttr = [
+    'Name',
+]
+
+module.exports = {tripAttr, passengerAttr, driverAttr}
