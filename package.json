@@ -18,7 +18,7 @@
     "lsof": "^0.1.0",
     "materialize-css": "^1.0.0-rc.2",
     "mdbreact": "^4.25.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dates": "^21.8.0",
